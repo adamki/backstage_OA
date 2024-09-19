@@ -11,7 +11,14 @@
 
 [X] Your service should emit a JSON object(omitted)
 
+[X] [OPTIONAL]Type Hinting
+
+[X] [OPTIONAL]Unit tests
+
+---
+
 # Setup:
+
 ### 1. Clone the Repository
 
 To get started, clone this repository:
@@ -56,6 +63,20 @@ python manage.py runserver
 Your app is running at `http://localhost:8000/`
 
 
+### 7. Other commands
+
+Run tests
+
+```
+pytest
+```
+
+Auto-Format
+
+```
+black8 .
+```
+
 ---
 
 
@@ -77,3 +98,4 @@ Your app is running at `http://localhost:8000/`
     "occurrences": 12,
     "last_datetime": "2024-09-19T03:56:14.108Z"
 }
+```

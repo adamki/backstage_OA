@@ -1,11 +1,11 @@
-from django.http import JsonResponse
-
+from django.http import JsonResponse, HttpRequest
+from typing import Union
 from api.models import NumberRequest
 from api.calculations import calculate_difference
 
 
-def difference_view(request):
-    query_params = request.GET.get("n")
+def difference_view(request: HttpRequest) -> JsonResponse:
+    query_params = request.GET
     n = query_params.get("n")
 
     # Check if the only parameter is 'n' and that it's not None

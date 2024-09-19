@@ -1,28 +1,28 @@
 from django.db import models
 from django.utils import timezone
+from typing import Dict, Any
 
 
 class NumberRequest(models.Model):
-    number = models.PositiveIntegerField(db_index=True)
-    occurrences = models.PositiveIntegerField(default=1)
-    last_datetime = models.DateTimeField(auto_now=True)
-    value = models.PositiveIntegerField(null=False)
+    number: int = models.PositiveIntegerField(db_index=True)
+    occurrences: int = models.PositiveIntegerField(default=1)
+    last_datetime: models.DateTimeField = models.DateTimeField(auto_now=True)
+    value: int = models.PositiveIntegerField(null=False)
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> None:
         if self.pk is not None:
-            original = NumberRequest.objects.get(pk=self.pk)
+            original: NumberRequest = NumberRequest.objects.get(pk=self.pk)
 
             if original.number == self.number:
                 self.occurrences = original.occurrences + 1
 
         super().save(*args, **kwargs)
 
-    def increment(self):
+    def increment(self) -> None:
         self.occurrences += 1
         self.last_datetime = timezone.now()
-        self.save()
 
-    def to_json(self):
+    def to_json(self) -> Dict[str, Any]:
         return {
             "datetime": timezone.now(),
             "value": self.value,
@@ -31,5 +31,5 @@ class NumberRequest(models.Model):
             "last_datetime": self.last_datetime,
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Number {self.number} - Value {self.value}"

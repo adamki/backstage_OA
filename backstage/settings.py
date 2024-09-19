@@ -26,11 +26,13 @@ SECRET_KEY = "django-insecure-=h6o^)=k&@=esx#y1z$bze_#s$6qlf7*a-65(ho(k+w3@&=g-%
 DEBUG = True
 
 ALLOWED_HOSTS = []
+APPEND_SLASH = False
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "api",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
